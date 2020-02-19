@@ -4,7 +4,7 @@ import { LoginButton, AccessToken, LoginManager } from 'react-native-fbsdk';
 import firebase from 'firebase';
 import { fbAuth } from '../Components/fbAuthentication';
 
-class LoginPage extends React.Component {
+class signUpPage extends React.Component {
 	state = {
 		Login: 'guest'
 	};
@@ -13,19 +13,21 @@ class LoginPage extends React.Component {
 		return (
 			<View style={styles.login}>
 				<Text style={styles.header}>shopLocal.</Text>
+				<TextInput style={styles.textinput} placeholder="full name" placeholderTextColor="'#36485f'" />
+				<TextInput style={styles.textinput} placeholder="telephone" placeholderTextColor="'#36485f'" />
+				<TextInput style={styles.textinput} placeholder="address" placeholderTextColor="'#36485f'" />
+				<TextInput style={styles.textinput} placeholder="post code" placeholderTextColor="'#36485f'" />
 				<TextInput style={styles.textinput} placeholder="email address" placeholderTextColor="'#36485f'" />
 				<TextInput style={styles.textinput} placeholder="password" placeholderTextColor="'#36485f'" />
+				<TextInput style={styles.textinput} placeholder="paypal email" placeholderTextColor="'#36485f'" />
 				<TouchableOpacity style={styles.button}>
-					<Text style={styles.whiteText}>Login</Text>
+					<Text style={styles.whiteText}>Sign up.</Text>
 				</TouchableOpacity>
 				<TouchableOpacity onPress={fbAuth} style={styles.fbButton}>
-					<Text style={styles.whiteText}>Facebook Login.</Text>
+					<Text style={styles.whiteText}>Sign up with Facebook.</Text>
 				</TouchableOpacity>
-				<Text style={styles.signUpinfo}>
-					Don't have an account? Log in with Facebook or sign up manually below.
-				</Text>
 				<TouchableOpacity>
-					<Text style={styles.signUp}>Sign up now!</Text>
+					<Text style={styles.signUp}>Go back to login.</Text>
 				</TouchableOpacity>
 			</View>
 		);
@@ -85,4 +87,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default LoginPage;
+export default signUpPage;
