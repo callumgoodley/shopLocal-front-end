@@ -4,7 +4,8 @@ import * as React from 'react';
 import {View, Text, Button, TextInput} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import HomePage from './Screens/HomePage';
+import LoginPage from './Screens/LoginPage';
 
 const Stack = createStackNavigator();
 
