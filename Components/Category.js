@@ -1,18 +1,18 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image} from 'react-native';
 
 class Category extends React.Component {
   render() {
     const {image, name} = this.props;
     return (
-      <View style={styled.catBox}>
+      <View style={styled.categoryBox}>
         {image && (
-          <View style={{flex: 3}}>
+          <View style={styled.imageView}>
             <Image source={image} style={styled.image} />
           </View>
         )}
 
-        <View style={!image ? styled.seeMoreText : styled.catsText}>
+        <View style={!image ? styled.seeMoreText : styled.categoryText}>
           <Text style={styled.text}>{name}</Text>
         </View>
       </View>
@@ -22,7 +22,7 @@ class Category extends React.Component {
 
 const styled = {
   text: {fontSize: 18, color: '#fff', fontWeight: '600'},
-  catsText: {
+  categoryText: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -37,7 +37,7 @@ const styled = {
     backgroundColor: '#149C0C',
     borderRadius: 20,
   },
-  catBox: {
+  categoryBox: {
     width: 120,
     borderColor: '#149C0C',
     borderWidth: 1,
@@ -47,10 +47,10 @@ const styled = {
   image: {
     flex: 1,
     width: null,
-    // height: null,
     resizeMode: 'contain',
     margin: 5,
   },
+  imageView: {flex: 3},
 };
 
 export default Category;

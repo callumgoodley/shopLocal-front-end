@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView, Image} from 'react-native';
+import {ScrollView} from 'react-native';
 import Category from './Category';
 
 const CategoriesList = () => {
@@ -8,7 +8,7 @@ const CategoriesList = () => {
       scrollEventThrottle={16}
       horizontal={true}
       showsHorizontalScrollIndicator={false}
-      style={{padding: 10}}>
+      style={styled.scroll}>
       <Category image={require('../images/bakery.png')} name={'Bakery'} />
       <Category image={require('../images/butcher.png')} name={'Butcher'} />
       <Category image={require('../images/florist.png')} name={'Florist'} />
@@ -20,6 +20,9 @@ const CategoriesList = () => {
       <Category name={'See all categories'} />
     </ScrollView>
   );
+};
+const styled = {
+  scroll: {padding: 10},
 };
 
 export default CategoriesList;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {View, StyleSheet, ScrollView, Button, Alert} from 'react-native';
+import {View, Button, Alert} from 'react-native';
 import CategoriesList from '../Components/CategoriesList';
 import MapComponent from '../Components/Map';
 
