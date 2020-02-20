@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {View, Button, Text} from 'react-native';
+import {View, Button} from 'react-native';
 import CategoriesList from '../Components/CategoriesList';
-import MapComponent from '../Components/Map';
+import MapComponent from '../Components/MapComponent';
 import ListView from '../Components/ListView';
 
 class HomePage extends React.Component {
