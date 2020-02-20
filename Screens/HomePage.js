@@ -1,29 +1,42 @@
 import React from 'react';
 
-import {View, Button, Alert} from 'react-native';
+import {View, Button, Text} from 'react-native';
 import CategoriesList from '../Components/CategoriesList';
 import MapComponent from '../Components/Map';
+import ListView from '../Components/ListView';
 
 class HomePage extends React.Component {
   state = {
     err: null,
+    toggleView: false,
   };
 
   render() {
+    const {toggleView} = this.state;
+    const view = toggleView ? 'Map' : 'List';
+    console.log(toggleView);
     return (
       <View style={styled.homeView}>
         <View style={styled.categories}>
           <CategoriesList />
         </View>
-
-        <View style={styled.mapView}>
-          <MapComponent />
-        </View>
-
+        {!toggleView ? (
+          <View style={styled.shops}>
+            <MapComponent />
+          </View>
+        ) : (
+          <View style={styled.shops}>
+            <ListView />
+          </View>
+        )}
         <View style={styled.buttonView}>
           <Button
-            title="Show List View"
-            onPress={() => Alert.alert('Simple Button pressed')}
+            title={`Show ${view} View`}
+            onPress={() =>
+              this.setState(currentState => {
+                return {toggleView: !currentState.toggleView};
+              })
+            }
           />
         </View>
       </View>
@@ -37,7 +50,7 @@ const styled = {
     top: '20%',
     alignSelf: 'flex-start',
   },
-  mapView: {
+  shops: {
     flex: 4,
   },
   categories: {flex: 1, backgroundColor: 'rgba(20, 156, 12, 0.1)'},
