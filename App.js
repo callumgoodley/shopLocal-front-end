@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+// navigator.geolocation = require('@react-native-community/geolocation');
 
 import * as React from 'react';
 import {View, Text, Button, TextInput, TabBarIOS} from 'react-native';

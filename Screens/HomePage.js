@@ -1,33 +1,50 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView, Button, Alert} from 'react-native';
 import CategoriesList from '../Components/CategoriesList';
-import MapView from 'react-native-maps';
+import MapComponent from '../Components/Map';
 
-function HomePage({navigation}) {
-  return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: 'column',
-      }}>
-      <View style={{flex: 1, backgroundColor: 'rgba(20, 156, 12, 0.1)'}}>
-        <CategoriesList />
+class HomePage extends React.Component {
+  state = {
+    err: null,
+  };
+
+  render() {
+    return (
+      <View style={styled.homeView}>
+        <View style={styled.categories}>
+          <CategoriesList />
+        </View>
+
+        <View style={styled.mapView}>
+          <MapComponent />
+        </View>
+
+        <View style={styled.buttonView}>
+          <Button
+            title="Show List View"
+            onPress={() => Alert.alert('Simple Button pressed')}
+          />
+        </View>
       </View>
-      <MapView
-        region={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.0121,
-        }}
-        style={{
-          flex: 4,
-        }}
-      />
-    </View>
-  );
+    );
+  }
 }
+
+const styled = {
+  buttonView: {
+    position: 'absolute',
+    top: '20%',
+    alignSelf: 'flex-start',
+  },
+  mapView: {
+    flex: 4,
+  },
+  categories: {flex: 1, backgroundColor: 'rgba(20, 156, 12, 0.1)'},
+  homeView: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+};
 
 export default HomePage;

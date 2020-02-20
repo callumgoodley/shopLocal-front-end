@@ -37,6 +37,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string> location for maps</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string> location for maps</string>
 	<key>UILaunchStoryboardName</key>
