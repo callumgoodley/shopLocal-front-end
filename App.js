@@ -1,30 +1,14 @@
 import 'react-native-gesture-handler';
-// navigator.geolocation = require('@react-native-community/geolocation');
 
-import * as React from 'react';
-import {View, Text, Button, TextInput, TabBarIOS} from 'react-native';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomePage from './Screens/HomePage';
-import LoginPage from './Screens/LoginPage';
 import MyAccountPage from './Screens/MyAccountPage';
 import SettingsPage from './Screens/SettingsPage';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-// const Stack = createStackNavigator();
-
-// function App() {
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator initialRouteName="Home">
-//         {/* <Stack.Screen name="Login" component={LoginPage} /> */}
-//         <Stack.Screen name="Home" component={HomePage} />
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
 
 const HomeStack = createStackNavigator();
 
@@ -69,7 +53,7 @@ function MyAccountStackScreen() {
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
+const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -85,7 +69,6 @@ export default function App() {
               iconName = 'ios-contact';
             }
 
-            // You can return any component that you like here!
             return <Ionicons name={iconName} size={30} color={color} />;
           },
         })}
@@ -99,6 +82,6 @@ export default function App() {
       </Tab.Navigator>
     </NavigationContainer>
   );
-}
+};
 
-// export default App;
+export default App;
