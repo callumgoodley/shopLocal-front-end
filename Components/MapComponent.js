@@ -4,6 +4,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import MapView, {Marker, Callout} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
+import ShopCard from './ShopCard';
 
 Geolocation.setRNConfiguration({
   skipPermissionRequests: true,
@@ -60,9 +61,13 @@ class MapComponent extends React.Component {
               coordinate={{
                 latitude: location.lat,
                 longitude: location.lng,
-              }}
-              title={location.name}
-            />
+              }}>
+              <Callout>
+                <View style={{width: 200}}>
+                  <ShopCard />
+                </View>
+              </Callout>
+            </Marker>
           );
         })}
       </MapView>
