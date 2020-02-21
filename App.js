@@ -25,6 +25,7 @@ function HomeStackScreen() {
           fontWeight: 'bold',
         },
       }}>
+        {/* <HomeStack.Screen name="Login" component={LoginPage}/> */}
       <HomeStack.Screen name="Home" component={HomePage} />
     </HomeStack.Navigator>
   );
