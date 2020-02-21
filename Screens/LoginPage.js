@@ -2,23 +2,103 @@ import React from 'react';
 import { TouchableOpacity, TextInput, Text, StyleSheet, View } from 'react-native';
 import { LoginButton, AccessToken, LoginManager } from 'react-native-fbsdk';
 import firebase from 'firebase';
-import { fbAuth } from '../Components/fbAuthentication';
+import { config, firebaseRef } from '../Components/firebaseConfig';
 
 class LoginPage extends React.Component {
 	state = {
-		Login: 'guest'
+		isAuthenticated: false,
+		typedEmail: '',
+		typedPassword: '',
+		user: null
 	};
+	unsubscriber = null;
+
+	fbAuth = () => {
+		LoginManager.logInWithPermissions([ 'public_profile', 'email' ]).then(
+			(result) => {
+				if (result.isCancelled) {
+					console.log('Login cancelled');
+				} else {
+					AccessToken.getCurrentAccessToken().then(
+						(accessTokenData) => {
+							const credential = firebase.auth.FacebookAuthProvider.credential(
+								accessTokenData.accessToken
+							);
+							firebase.auth().signInWithCredential(credential).then(
+								(loggedInUser) => {
+									this.setState({ user: loggedInUser.user });
+
+									console.log('Log in success: ' + loggedInUser.user.email);
+								},
+								(error) => {
+									console.log(error);
+								}
+							);
+						},
+						(error) => {
+							console.log(error);
+						}
+					);
+				}
+			},
+			function(error) {
+				console.log('An error occurred');
+			}
+		);
+	};
+
+	onLogin = () => {
+		const { typedEmail, typedPassword } = this.state;
+		firebase
+			.auth()
+			.signInWithEmailAndPassword(typedEmail, typedPassword)
+			.then((loggedInUser) => {
+				this.setState({ user: loggedInUser });
+				console.log('Login success: ' + this.state.user.user.email);
+			})
+			.catch((err) => {
+				console.log('theres been an error' + err);
+			});
+	};
+
+	componentDidMount() {
+		this.unsubscriber = firebase.auth().onAuthStateChanged((changedUser) => {
+			this.setState({ user: changedUser });
+		});
+	}
+
+	componentWillUnmount() {
+		if (this.unsubscriber) {
+			this.unsubscriber();
+		}
+	}
 
 	render() {
 		return (
 			<View style={styles.login}>
 				<Text style={styles.header}>shopLocal.</Text>
-				<TextInput style={styles.textinput} placeholder="email address" placeholderTextColor="'#36485f'" />
-				<TextInput style={styles.textinput} placeholder="password" placeholderTextColor="'#36485f'" />
-				<TouchableOpacity style={styles.button}>
+				<TextInput
+					style={styles.textinput}
+					placeholder="email address"
+					placeholderTextColor="#149c0c"
+					onChangeText={(text) => {
+						this.setState({ typedEmail: text });
+					}}
+				/>
+				<TextInput
+					style={styles.textinput}
+					placeholder="password"
+					placeholderTextColor="#149c0c"
+					secureTextEntry={true}
+					onChangeText={(text) => {
+						this.setState({ typedPassword: text });
+					}}
+				/>
+				<TouchableOpacity style={styles.button} onPress={this.onLogin}>
 					<Text style={styles.whiteText}>Login</Text>
 				</TouchableOpacity>
-				<TouchableOpacity onPress={fbAuth} style={styles.fbButton}>
+
+				<TouchableOpacity onPress={this.fbAuth} style={styles.fbButton}>
 					<Text style={styles.whiteText}>Facebook Login.</Text>
 				</TouchableOpacity>
 				<Text style={styles.signUpinfo}>
@@ -57,9 +137,10 @@ const styles = StyleSheet.create({
 	},
 	textinput: {
 		alignSelf: 'stretch',
+		textAlign: 'left',
 		height: 40,
 		marginBottom: 15,
-		color: '#b2c3d9',
+		color: '#149c0c',
 		borderBottomColor: '#f8f8f8',
 		borderBottomWidth: 1
 	},
