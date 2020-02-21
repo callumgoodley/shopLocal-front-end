@@ -14,7 +14,6 @@ class HomePage extends React.Component {
   render() {
     const {toggleView} = this.state;
     const view = toggleView ? 'Map' : 'List';
-    console.log(toggleView);
     return (
       <View style={styled.homeView}>
         <View style={styled.categories}>
