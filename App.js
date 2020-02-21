@@ -1,14 +1,16 @@
 import 'react-native-gesture-handler';
-
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomePage from './Screens/HomePage';
 import MyAccountPage from './Screens/MyAccountPage';
 import SettingsPage from './Screens/SettingsPage';
+import LoginPage from './Screens/LoginPage';
+import SignUpPage from './Screens/SignUpPage';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 const HomeStack = createStackNavigator();
 
@@ -84,5 +86,6 @@ const App = () => {
     </NavigationContainer>
   );
 };
+
 
 export default App;
