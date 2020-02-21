@@ -54,7 +54,11 @@ class MapComponent extends React.Component {
               }}>
               <Callout>
                 <View style={styled.shopCardView}>
-                  <ShopCard />
+                  <ShopCard
+                    category={shop.type}
+                    name={shop.name}
+                    img={shop.img}
+                  />
                 </View>
               </Callout>
             </Marker>
@@ -65,6 +69,6 @@ class MapComponent extends React.Component {
   }
 }
 
-const styled = {mapView: {flex: 1}, shopCardView: {width: 200}};
+const styled = {mapView: {flex: 1}, shopCardView: {width: 250}};
 
 export default MapComponent;
