@@ -1,19 +1,22 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 
-const Category = ({image, name}) => {
+const Category = ({image, name, type, setCategory}) => {
   return (
-    <View style={styled.categoryBox}>
+    <TouchableOpacity
+      onPress={() => {
+        setCategory(type);
+      }}
+      style={styled.categoryBox}>
       {image && (
         <View style={styled.imageView}>
           <Image source={image} style={styled.image} />
         </View>
       )}
-
       <View style={!image ? styled.seeMoreText : styled.categoryText}>
         <Text style={styled.text}>{name}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
