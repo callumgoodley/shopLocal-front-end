@@ -1,17 +1,19 @@
 import React from 'react';
 import {Text, View, Image} from 'react-native';
 
-const ShopCard = () => {
+const ShopCard = ({category, name, img}) => {
   return (
     <View style={styled.card}>
       <View style={styled.imageView}>
         <Image
-          source={require('../images/bakeryPic.jpg')}
+          source={{uri: img}}
+          // source={require('../images/bakeryPic.jpg')}
           style={styled.image}
         />
       </View>
       <View style={styled.text}>
-        <Text>hello</Text>
+        <Text>{name}</Text>
+        <Text>{category}</Text>
       </View>
     </View>
   );
@@ -25,12 +27,15 @@ const styled = {
     height: 200,
     marginTop: 20,
   },
-  text: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+  text: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
   imageView: {flex: 1},
   image: {
     flex: 1,
     width: null,
-    resizeMode: 'stretch',
+    resizeMode: 'cover',
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },
