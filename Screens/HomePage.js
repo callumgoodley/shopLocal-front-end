@@ -9,15 +9,17 @@ class HomePage extends React.Component {
   state = {
     err: null,
     toggleView: false,
+    filterCategory: '',
   };
 
   render() {
-    const {toggleView} = this.state;
+    const {toggleView, filterCategory} = this.state;
     const view = toggleView ? 'Map' : 'List';
+    console.log(filterCategory, 'filter');
     return (
       <View style={styled.homeView}>
         <View style={styled.categories}>
-          <CategoriesList />
+          <CategoriesList setCategory={this.setCategory} />
         </View>
         {!toggleView ? (
           <View style={styled.shops}>
@@ -41,6 +43,10 @@ class HomePage extends React.Component {
       </View>
     );
   }
+
+  setCategory = type => {
+    this.setState({filterCategory: type});
+  };
 }
 
 const styled = {
