@@ -3,6 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 target 'shopLocalFrontEnd' do
   # Pods for shopLocalFrontEnd
+
   #FBLogin
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
@@ -14,6 +15,7 @@ target 'shopLocalFrontEnd' do
   pod 'Firebase/Storage'
   pod 'Firebase/Analytics'
   
+
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -45,13 +47,20 @@ target 'shopLocalFrontEnd' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
 
   target 'shopLocalFrontEndTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+  pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
+  
   use_native_modules!
 end
 
