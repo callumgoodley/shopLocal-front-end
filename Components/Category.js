@@ -1,24 +1,21 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 
-class Category extends React.Component {
-  render() {
-    const {image, name} = this.props;
-    return (
-      <View style={styled.categoryBox}>
-        {image && (
-          <View style={styled.imageView}>
-            <Image source={image} style={styled.image} />
-          </View>
-        )}
-
-        <View style={!image ? styled.seeMoreText : styled.categoryText}>
-          <Text style={styled.text}>{name}</Text>
+const Category = ({image, name}) => {
+  return (
+    <View style={styled.categoryBox}>
+      {image && (
+        <View style={styled.imageView}>
+          <Image source={image} style={styled.image} />
         </View>
+      )}
+
+      <View style={!image ? styled.seeMoreText : styled.categoryText}>
+        <Text style={styled.text}>{name}</Text>
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
 const styled = {
   text: {fontSize: 18, color: '#fff', fontWeight: '600'},
