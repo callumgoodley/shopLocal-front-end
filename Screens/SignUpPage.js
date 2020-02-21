@@ -3,7 +3,7 @@ import { TouchableOpacity, TextInput, Text, StyleSheet, View } from 'react-nativ
 import { LoginButton, AccessToken, LoginManager } from 'react-native-fbsdk';
 import firebase from 'firebase';
 import { config, firebaseRef } from '../Components/firebaseConfig';
-import { postUser } from '../API';
+import { postUser, postBusiness } from '../API';
 
 class signUpPage extends React.Component {
 	state = {
@@ -42,6 +42,10 @@ class signUpPage extends React.Component {
 					console.log('theres been an error' + err);
 				});
 		else alert('passwords do not match');
+	};
+
+	addBusiness = () => {
+		postBusiness();
 	};
 
 	componentDidMount() {
@@ -122,6 +126,9 @@ class signUpPage extends React.Component {
 				/>
 				<TouchableOpacity style={styles.button} onPress={this.onSignUp}>
 					<Text style={styles.whiteText}>Sign up.</Text>
+				</TouchableOpacity>
+				<TouchableOpacity style={styles.button} onPress={this.addBusiness}>
+					<Text style={styles.whiteText}>Add businesses</Text>
 				</TouchableOpacity>
 				<TouchableOpacity>
 					<Text style={styles.signUp}>Go back to login.</Text>
