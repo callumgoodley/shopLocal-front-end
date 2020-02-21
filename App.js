@@ -75,6 +75,7 @@ const App = () => {
         tabBarOptions={{
           activeTintColor: '#149C0C',
           inactiveTintColor: 'gray',
+          style: {paddingTop: 5},
         }}>
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="My Account" component={MyAccountStackScreen} />
