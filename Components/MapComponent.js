@@ -16,16 +16,6 @@ class MapComponent extends React.Component {
     err: null,
     latitude: 1,
     longitude: 1,
-    locations: [
-      {name: '1', lat: 53.4733341, lng: -2.2404379},
-      {name: '2', lat: 53.4742369, lng: -2.2405659},
-      {name: '3', lat: 53.4743035, lng: -2.2348444},
-      {name: '4', lat: 53.4741018, lng: -2.2367348},
-      {name: '5', lat: 53.4689331, lng: -2.2383827},
-      {name: '6', lat: 53.474953, lng: -2.2411171},
-      {name: '7', lat: 53.4717176, lng: -2.2426765},
-      {name: '8', lat: 53.4706653, lng: -2.2360268},
-    ],
   };
 
   componentDidMount() {
@@ -54,16 +44,16 @@ class MapComponent extends React.Component {
         showsUserLocation={true}
         showsMyLocationButton={true}
         followsUserLocation={true}>
-        {this.state.locations.map(location => {
+        {this.props.shops.map(shop => {
           return (
             <Marker
-              key={location.name}
+              key={shop.id}
               coordinate={{
-                latitude: location.lat,
-                longitude: location.lng,
+                latitude: shop.lat,
+                longitude: shop.lng,
               }}>
               <Callout>
-                <View style={{width: 200}}>
+                <View style={styled.shopCardView}>
                   <ShopCard />
                 </View>
               </Callout>
@@ -75,6 +65,6 @@ class MapComponent extends React.Component {
   }
 }
 
-const styled = {mapView: {flex: 1}};
+const styled = {mapView: {flex: 1}, shopCardView: {width: 200}};
 
 export default MapComponent;
