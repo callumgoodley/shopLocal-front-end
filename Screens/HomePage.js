@@ -10,10 +10,84 @@ class HomePage extends React.Component {
     err: null,
     toggleView: false,
     filterCategory: '',
+    locations: [
+      {
+        id: 1,
+        name: '1',
+        lat: 53.4733341,
+        lng: -2.2404379,
+        type: 'bakery',
+        img: '',
+      },
+      {
+        id: 2,
+        name: '2',
+        lat: 53.4742369,
+        lng: -2.2405659,
+        type: 'fruit',
+        img: '',
+      },
+      {
+        id: 3,
+        name: '3',
+        lat: 53.4743035,
+        lng: -2.2348444,
+        type: 'cheese',
+        img: '',
+      },
+      {
+        id: 4,
+        name: '4',
+        lat: 53.4741018,
+        lng: -2.2367348,
+        type: 'fish',
+        img: '',
+      },
+      {
+        id: 5,
+        name: '5',
+        lat: 53.4689331,
+        lng: -2.2383827,
+        type: 'florist',
+        img: '',
+      },
+      {
+        id: 6,
+        name: '6',
+        lat: 53.474953,
+        lng: -2.2411171,
+        type: 'milk',
+        img: '',
+      },
+      {
+        id: 7,
+        name: '7',
+        lat: 53.4717176,
+        lng: -2.2426765,
+        type: 'sweet',
+        img: '',
+      },
+      {
+        id: 8,
+        name: '8',
+        lat: 53.4706653,
+        lng: -2.2360268,
+        type: 'butcher',
+        img: '',
+      },
+      {
+        id: 9,
+        name: '9',
+        lat: 53.470583,
+        lng: -2.248035,
+        type: 'other',
+        img: '',
+      },
+    ],
   };
 
   render() {
-    const {toggleView, filterCategory} = this.state;
+    const {toggleView, filterCategory, locations} = this.state;
     const view = toggleView ? 'Map' : 'List';
     console.log(filterCategory, 'filter');
     return (
@@ -23,7 +97,7 @@ class HomePage extends React.Component {
         </View>
         {!toggleView ? (
           <View style={styled.shops}>
-            <MapComponent />
+            <MapComponent shops={locations} />
           </View>
         ) : (
           <View style={styled.shops}>
