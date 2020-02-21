@@ -118,6 +118,23 @@ class HomePage extends React.Component {
     );
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.filterCategory !== this.state.filterCategory) {
+      // axios get where topic
+      return this.setState(currentState => {
+        return {
+          locations: currentState.locations.filter(
+            shop => shop.type === this.state.filterCategory,
+          ),
+        };
+      });
+    }
+  }
+
+  componentDidMount() {
+    //axios get all businesses
+  }
+
   setCategory = type => {
     this.setState({filterCategory: type});
   };
