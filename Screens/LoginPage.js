@@ -113,7 +113,8 @@ class LoginPage extends React.Component {
         <Text style={styles.signUpinfo}>
           Don't have an account? Log in with Facebook or sign up manually below.
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('Signup')}>
           <Text style={styles.signUp}>Sign up now!</Text>
         </TouchableOpacity>
       </View>
