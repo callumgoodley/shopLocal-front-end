@@ -8,10 +8,8 @@ import SettingsPage from './Screens/SettingsPage';
 import LoginPage from './Screens/LoginPage';
 import SignUpPage from './Screens/SignUpPage';
 
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 
 const HomeStack = createStackNavigator();
 
@@ -25,7 +23,8 @@ function HomeStackScreen() {
           fontWeight: 'bold',
         },
       }}>
-        {/* <HomeStack.Screen name="Login" component={LoginPage}/> */}
+      <HomeStack.Screen name="Login" component={LoginPage} />
+      <HomeStack.Screen name="Signup" component={SignUpPage} />
       <HomeStack.Screen name="Home" component={HomePage} />
     </HomeStack.Navigator>
   );
@@ -53,7 +52,6 @@ function MyAccountStackScreen() {
       />
     </MyAccountStack.Navigator>
   );
-
 }
 
 const Tab = createBottomTabNavigator();
@@ -89,6 +87,5 @@ const App = () => {
     </NavigationContainer>
   );
 };
-
 
 export default App;
