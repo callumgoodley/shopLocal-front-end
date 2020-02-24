@@ -65,6 +65,9 @@ class LoginPage extends React.Component {
         this.setState({user: loggedInUser});
         console.log('Login success: ' + this.state.user.user.email);
       })
+      .then(() => {
+        this.props.navigation.navigate('Home');
+      })
       .catch(err => {
         console.log('theres been an error' + err);
       });
