@@ -70,13 +70,13 @@ class SignUpPage extends React.Component {
     postBusiness();
   };
 
-  componentDidMount() {
-    this.unsubscriber = firebase.auth().onAuthStateChanged(changedUser => {
-      console.dir('changed user: ' + changedUser.email);
-      this.setState({user: changedUser});
-      console.log('state user: ' + this.state.user.email);
-    });
-  }
+  // componentDidMount() {
+  //   this.unsubscriber = firebase.auth().onAuthStateChanged(changedUser => {
+  //     console.dir('changed user: ' + changedUser.email);
+  //     this.setState({user: changedUser});
+  //     console.log('state user: ' + this.state.user.email);
+  //   });
+  // }
 
   componentWillUnmount() {
     if (this.unsubscriber) {
