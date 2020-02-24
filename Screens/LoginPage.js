@@ -9,13 +9,15 @@ import {
 import {LoginButton, AccessToken, LoginManager} from 'react-native-fbsdk';
 import firebase from 'firebase';
 import {config, firebaseRef} from '../Components/firebaseConfig';
+import {connect} from 'react-redux';
+import {login} from '../actions/users';
+import {getUser, postUser} from '../API';
 
 class LoginPage extends React.Component {
   state = {
     isAuthenticated: false,
     typedEmail: '',
     typedPassword: '',
-    user: null,
   };
   unsubscriber = null;
 
@@ -35,8 +37,8 @@ class LoginPage extends React.Component {
                 .signInWithCredential(credential)
                 .then(
                   loggedInUser => {
-                    this.setState({user: loggedInUser.user});
-
+                    postUser(loggedInUser.user.uid, loggedInUser.user.email);
+                    this.props.navigation.navigate('Home');
                     console.log('Log in success: ' + loggedInUser.user.email);
                   },
                   error => {
@@ -62,8 +64,15 @@ class LoginPage extends React.Component {
       .auth()
       .signInWithEmailAndPassword(typedEmail, typedPassword)
       .then(loggedInUser => {
-        this.setState({user: loggedInUser});
-        console.log('Login success: ' + this.state.user.user.email);
+        console.log('login page', loggedInUser.user.uid);
+        getUser(loggedInUser.user.uid).then(userData =>
+          this.props.add(userData),
+        );
+
+        // console.log('Login successproviderData: ' + this.state.user.user.email);
+      })
+      .then(() => {
+        this.props.navigation.navigate('Home');
       })
       .catch(err => {
         console.log('theres been an error' + err);
@@ -113,7 +122,8 @@ class LoginPage extends React.Component {
         <Text style={styles.signUpinfo}>
           Don't have an account? Log in with Facebook or sign up manually below.
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('Signup')}>
           <Text style={styles.signUp}>Sign up now!</Text>
         </TouchableOpacity>
       </View>
@@ -175,4 +185,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginPage;
+const mapStateToProps = state => {
+  // console.log('map state 123', state.userReducer.loggedInUser);
+  return {
+    user: state.userReducer.loggedInUser,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    add: user => dispatch(login(user)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

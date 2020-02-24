@@ -268,7 +268,6 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-
   - Google-Maps-iOS-Utils (2.1.0):
     - Google-Maps-iOS-Utils/Clustering (= 2.1.0)
     - Google-Maps-iOS-Utils/Geometry (= 2.1.0)
@@ -285,12 +284,6 @@ PODS:
     - GoogleMaps
   - Google-Maps-iOS-Utils/QuadTree (2.1.0):
     - GoogleMaps
-  - GoogleMaps (3.5.0):
-    - GoogleMaps/Maps (= 3.5.0)
-  - GoogleMaps/Base (3.5.0)
-  - GoogleMaps/Maps (3.5.0):
-    - GoogleMaps/Base
-
   - GoogleAppMeasurement (6.2.2):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -301,6 +294,11 @@ PODS:
   - GoogleDataTransportCCTSupport (1.4.0):
     - GoogleDataTransport (~> 4.0)
     - nanopb (~> 0.3.901)
+  - GoogleMaps (3.5.0):
+    - GoogleMaps/Maps (= 3.5.0)
+  - GoogleMaps/Base (3.5.0)
+  - GoogleMaps/Maps (3.5.0):
+    - GoogleMaps/Base
   - GoogleUtilities/AppDelegateSwizzler (6.5.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -343,7 +341,6 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
-
   - RCTRequired (0.61.5)
   - RCTTypeSafety (0.61.5):
     - FBLazyVector (= 0.61.5)
@@ -507,15 +504,6 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
   - React-jsinspector (0.61.5)
-
-  - react-native-geolocation (2.0.2):
-    - React
-  - react-native-google-maps (0.26.1):
-    - Google-Maps-iOS-Utils (= 2.1.0)
-    - GoogleMaps (= 3.5.0)
-    - React
-  - react-native-maps (0.26.1):
-
   - react-native-fbsdk (1.1.2):
     - React
     - react-native-fbsdk/Core (= 1.1.2)
@@ -529,7 +517,14 @@ PODS:
     - React
   - react-native-fbsdk/Share (1.1.2):
     - FBSDKShareKit (= 5.8)
-
+    - React
+  - react-native-geolocation (2.0.2):
+    - React
+  - react-native-google-maps (0.26.1):
+    - Google-Maps-iOS-Utils (= 2.1.0)
+    - GoogleMaps (= 3.5.0)
+    - React
+  - react-native-maps (0.26.1):
     - React
   - react-native-safe-area-context (0.7.3):
     - React
@@ -606,13 +601,10 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
-
+  - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
-
-  - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
-
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -636,10 +628,6 @@ SPEC REPOS:
   trunk:
     - abseil
     - boost-for-react-native
-
-    - Google-Maps-iOS-Utils
-    - GoogleMaps
-
     - BoringSSL-GRPC
     - FBSDKCoreKit
     - FBSDKLoginKit
@@ -655,9 +643,11 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseStorage
+    - Google-Maps-iOS-Utils
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
+    - GoogleMaps
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
@@ -665,7 +655,6 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
-
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -696,17 +685,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
-
+  react-native-fbsdk:
+    :path: "../node_modules/react-native-fbsdk"
   react-native-geolocation:
     :path: "../node_modules/@react-native-community/geolocation"
   react-native-google-maps:
     :path: "../node_modules/react-native-maps"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
-
-  react-native-fbsdk:
-    :path: "../node_modules/react-native-fbsdk"
-
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-RCTActionSheet:
@@ -765,13 +751,11 @@ SPEC CHECKSUMS:
   FirebaseStorage: 6c5263796af3b1be82ed173598aade47535fe125
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
-  GoogleMaps: 32ca02de09de357a10ac773f2c70f1986751392d
-
   GoogleAppMeasurement: d0560d915abf15e692e8538ba1d58442217b6aff
   GoogleDataTransport: 47fe3b8e1673e5187dfd615656a3c5034f150d69
   GoogleDataTransportCCTSupport: 36f69887fd212db6d7ef4dd45ba44523717a434e
+  GoogleMaps: 32ca02de09de357a10ac773f2c70f1986751392d
   GoogleUtilities: 06eb53bb579efe7099152735900dd04bf09e7275
   "gRPC-C++": 9dfe7b44821e7b3e44aacad2af29d2c21f7cde83
   gRPC-Core: c9aef9a261a1247e881b18059b84d597293c9947
@@ -779,7 +763,6 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
-
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
@@ -789,10 +772,10 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
+  react-native-fbsdk: c35d42169e64aaf66f01713c1e18d0674f7f6519
   react-native-geolocation: cbd9d6bd06bac411eed2671810f454d4908484a8
   react-native-google-maps: 6af2b929f4d5d8d505b200b771fe410036ace2c0
   react-native-maps: a514194c7d860fdb311edddea6a017907df0e78d
-  react-native-fbsdk: c35d42169e64aaf66f01713c1e18d0674f7f6519
   react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
@@ -811,10 +794,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-
-
-
-PODFILE CHECKSUM: 16a76f94f59e2cdfb9b7d77ac63aafbbff020e97
-
+PODFILE CHECKSUM: 052a512d20dbdf6d093d09dcfb012c6cf9ae2da8
 
 COCOAPODS: 1.8.4
