@@ -6,7 +6,7 @@ import { config, firebaseRef } from '../Components/firebaseConfig';
 import { connect } from 'react-redux';
 import { login } from '../actions/users';
 import { loadBusinesses } from '../actions/businesses';
-import { getUser, postUser, makePayment } from '../API';
+import { getUser, postUser } from '../API';
 
 class LoginPage extends React.Component {
 	state = {
@@ -69,10 +69,6 @@ class LoginPage extends React.Component {
 			});
 	};
 
-	qPaypal = () => {
-		makePayment();
-	};
-
 	// componentDidMount() {
 	// 	this.unsubscriber = firebase.auth().onAuthStateChanged((changedUser) => {
 	// 		this.setState({ user: changedUser });
@@ -109,7 +105,6 @@ class LoginPage extends React.Component {
 				<TouchableOpacity style={styles.button} onPress={this.onLogin}>
 					<Text style={styles.whiteText}>Login</Text>
 				</TouchableOpacity>
-
 				<TouchableOpacity onPress={this.fbAuth} style={styles.fbButton}>
 					<Text style={styles.whiteText}>Facebook Login.</Text>
 				</TouchableOpacity>

@@ -3,40 +3,59 @@ import { Text, View, Image, TouchableOpacity, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const ShopCard = (props) => {
-	const { img, name, category } = props;
+	const { business } = props;
 	const navigation = useNavigation();
-
-	return (
-		<TouchableOpacity
-			style={styled.card}
-			onPress={() => {
-				navigation.navigate('Business');
-			}}
-		>
-			<View style={styled.imageView}>
-				<Image source={{ uri: img }} style={styled.image} />
-			</View>
-			<View style={styled.text}>
-				<Text>{name}</Text>
-				<Text>{category}</Text>
-			</View>
-			<Button
-				title="go to shop"
+	if (props.business) {
+		return (
+			<TouchableOpacity
+				style={styled.card}
 				onPress={() => {
-					navigation.navigate('Business');
+					navigation.navigate('Business', { business: props });
 				}}
-			/>
-		</TouchableOpacity>
-	);
+			>
+				<View style={styled.imageView}>
+					<Image source={{ uri: business.img }} style={styled.image} />
+				</View>
+				<View style={styled.text}>
+					<Text style={styled.cardTextName}>{business.business_name}</Text>
+					<Text style={styled.cardTextType}>{business.type}</Text>
+				</View>
+				<Button
+					title="go to shop"
+					onPress={() => {
+						navigation.navigate('Business', { business: props });
+					}}
+				/>
+			</TouchableOpacity>
+		);
+	} else {
+		return <Text>Loading...</Text>;
+	}
 };
 
 const styled = {
 	card: {
 		flex: 1,
-		backgroundColor: 'rgba(20, 156, 12, 0.3)',
+		backgroundColor: '#fff',
+		// backgroundColor: '#149c0c',
+		// backgroundColor: 'rgba(20, 156, 12, 0.3)',
 		borderRadius: 20,
-		height: 200,
+		borderColor: '#149c0c',
+		borderWidth: 3,
+		height: 180,
 		marginTop: 20
+	},
+	cardTextName: {
+		padding: 2,
+		fontSize: 18,
+		color: '#149c0c'
+		// color: '#fff'
+	},
+	cardTextType: {
+		paddingLeft: 4,
+		fontSize: 15,
+		color: '#149c0c'
+		// color: '#fff'
 	},
 	text: {
 		flex: 1,
@@ -47,8 +66,8 @@ const styled = {
 		flex: 1,
 		width: null,
 		resizeMode: 'cover',
-		borderTopRightRadius: 20,
-		borderTopLeftRadius: 20
+		borderTopRightRadius: 17,
+		borderTopLeftRadius: 17
 	}
 };
 

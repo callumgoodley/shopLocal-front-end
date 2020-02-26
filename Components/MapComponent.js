@@ -36,7 +36,8 @@ class MapComponent extends React.Component {
 		const keys = Object.keys(data);
 		for (let i = 0; i < keys.length; i++) {
 			let key = keys[i];
-			arr[key] = data[key];
+			arr.push(data[key]);
+			data[key].GoogleID = key;
 		}
 		return arr;
 	};
@@ -44,8 +45,6 @@ class MapComponent extends React.Component {
 	render() {
 		if (this.props.shops) {
 			const businessArr = this.makeBusinessesArr(this.props.shops.data);
-
-			console.log('business Arr >> ', businessArr);
 
 			return (
 				<MapView
@@ -60,19 +59,18 @@ class MapComponent extends React.Component {
 					showsMyLocationButton={true}
 					followsUserLocation={true}
 				>
-					{businessArr.map((shop) => {
-						console.log('shop>> ', shop);
+					{businessArr.map((business) => {
 						return (
 							<Marker
-								key={shop.business_id}
+								key={business.business_id}
 								coordinate={{
-									latitude: shop.lat,
-									longitude: shop.lng
+									latitude: business.lat,
+									longitude: business.lng
 								}}
 							>
 								<Callout>
 									<View style={styled.shopCardView}>
-										<ShopCard category={shop.type} name={shop.name} />
+										<ShopCard business={business} />
 									</View>
 								</Callout>
 							</Marker>
@@ -93,26 +91,7 @@ class MapComponent extends React.Component {
 					showsUserLocation={true}
 					showsMyLocationButton={true}
 					followsUserLocation={true}
-				>
-					{/* {businessArr.map((shop) => {
-					console.log('SHOP >>>', shop);
-					return (
-						<Marker
-							key={shop.business_id}
-							coordinate={{
-								latitude: shop.lat,
-								longitude: shop.lng
-							}}
-						>
-							<Callout>
-								<View style={styled.shopCardView}>
-									<ShopCard category={shop.type} name={shop.name} />
-								</View>
-							</Callout>
-						</Marker>
-					);
-				})} */}
-				</MapView>
+				/>
 			);
 		}
 	}
