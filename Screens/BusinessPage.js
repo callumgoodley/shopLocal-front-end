@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, ScrollView } from 'react-native';
 
 class BusinessPage extends React.Component {
 	render() {
@@ -11,14 +11,16 @@ class BusinessPage extends React.Component {
 					<View style={styled.imageView}>
 						<Image source={{ uri: business.img }} style={styled.image} />
 					</View>
-					<View style={styled.imageView}>
+					<ScrollView style={styled.textBox}>
 						<Text style={styled.name}>{business.business_name}</Text>
 						<Text style={styled.secondLine}>
-							{business.type} {business.address} {business.postcode}
+							{business.address} {business.postcode}
 						</Text>
+						<Text style={styled.secondLine}>{business.telephone}</Text>
+						<Text style={styled.secondLine}>{business.type}</Text>
 
 						<Text style={styled.story}>{business.story}</Text>
-					</View>
+					</ScrollView>
 				</View>
 			);
 		} else {
@@ -28,15 +30,17 @@ class BusinessPage extends React.Component {
 					<View style={styled.imageView}>
 						<Image source={{ uri: business.img }} style={styled.image} />
 					</View>
-					<View style={styled.imageView}>
+					<ScrollView style={styled.textBox}>
 						<Text style={styled.name}>{business.business_name}</Text>
 
 						<Text style={styled.secondLine}>
-							{business.type} {business.address} {business.postcode}
+							{business.address} {business.postcode}
 						</Text>
+						<Text style={styled.secondLine}>{business.telephone}</Text>
+						<Text style={styled.secondLine}>{business.type}</Text>
 
 						<Text style={styled.story}>{business.story}</Text>
-					</View>
+					</ScrollView>
 				</View>
 			);
 		}
@@ -45,16 +49,43 @@ class BusinessPage extends React.Component {
 
 const styled = {
 	name: {
-		fontSize: 24,
+		textAlign: 'right',
+		color: '#149c0c',
+		fontSize: 28,
+		fontWeight: 'bold',
 		padding: 5
 	},
 	secondLine: {
-		fontSize: 16,
-		paddingLeft: 5,
-		paddingBottom: 5
+		textAlign: 'right',
+		color: '#149c0c',
+		fontSize: 18,
+		padding: 5
+	},
+	type: {
+		flex: 1,
+		textAlign: 'right',
+		color: '#149c0c',
+		fontSize: 18,
+		padding: 5
 	},
 	story: {
+		flex: 1,
+		color: '#149c0c',
+		fontSize: 16,
 		padding: 5
+	},
+	textBox: {
+		flex: 1,
+		color: '#149c0c',
+		fontSize: 16,
+		padding: 5,
+		borderBottomColor: '#149c0c',
+		borderBottomWidth: 1,
+		borderTopColor: '#149c0c',
+		borderTopWidth: 2
+	},
+	contentContainer: {
+		paddingVertical: 20
 	},
 	imageView: {
 		flex: 1

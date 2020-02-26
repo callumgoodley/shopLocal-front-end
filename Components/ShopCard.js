@@ -48,11 +48,13 @@ const styled = {
 	cardTextName: {
 		padding: 2,
 		fontSize: 18,
+		fontWeight: 'bold',
 		color: '#149c0c'
 	},
 	cardTextType: {
 		paddingLeft: 4,
 		fontSize: 15,
+		fontWeight: 'bold',
 		color: '#149c0c'
 	},
 	cardLink: {
