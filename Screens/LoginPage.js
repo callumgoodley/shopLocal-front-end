@@ -64,13 +64,9 @@ class LoginPage extends React.Component {
       .auth()
       .signInWithEmailAndPassword(typedEmail, typedPassword)
       .then(loggedInUser => {
-        console.log('login page', loggedInUser.user.uid);
-        getUser(loggedInUser.user.uid).then(userData =>
-          this.props.add(userData),
-        );
-
-        // console.log('Login successproviderData: ' + this.state.user.user.email);
+        return getUser(loggedInUser.user.uid);
       })
+      .then(userData => this.props.add(userData))
       .then(() => {
         this.props.navigation.navigate('Home');
       })
