@@ -17,19 +17,21 @@ class SignUpPage extends React.Component {
     typedEmail: '',
     typedPassword: '',
     confirmedPassword: '',
-    fullName: '',
+    firstName: '',
+    lastName: '',
     tel: '',
     address: '',
     postcode: '',
     payPal: '',
-    user: null,
+    // user: null,
   };
   unsubscriber = null;
 
   addUser = () => {
     const {
       typedEmail,
-      fullName,
+      firstName,
+      lastName,
       tel,
       address,
       postcode,
@@ -39,7 +41,8 @@ class SignUpPage extends React.Component {
     postUser(
       user.user.uid,
       typedEmail,
-      fullName,
+      firstName,
+      lastName,
       tel,
       address,
       postcode,
@@ -49,19 +52,23 @@ class SignUpPage extends React.Component {
 
   onSignUp = () => {
     const {typedEmail, typedPassword, confirmedPassword} = this.state;
+    const {navigation} = this.props;
     if (typedPassword === confirmedPassword)
       firebase
         .auth()
         .createUserWithEmailAndPassword(typedEmail, typedPassword)
         .then(signedUpUser => {
-          alert('account created');
+          alert('account created, you can now login');
           this.setState({user: signedUpUser});
         })
         .then(() => {
           this.addUser();
         })
+        .then(() => {
+          navigation.navigate('Login');
+        })
         .catch(err => {
-          console.log('theres been an error' + err);
+          alert(err);
         });
     else alert('passwords do not match');
   };
@@ -90,28 +97,35 @@ class SignUpPage extends React.Component {
         <Text style={styles.header}>shopLocal.</Text>
         <TextInput
           style={styles.textinput}
-          placeholder="full name"
+          placeholder="First name"
           onChangeText={text => {
-            this.setState({fullName: text});
+            this.setState({firstName: text});
           }}
         />
         <TextInput
           style={styles.textinput}
-          placeholder="telephone"
+          placeholder="Last name"
+          onChangeText={text => {
+            this.setState({lastName: text});
+          }}
+        />
+        <TextInput
+          style={styles.textinput}
+          placeholder="Telephone"
           onChangeText={text => {
             this.setState({tel: text});
           }}
         />
         <TextInput
           style={styles.textinput}
-          placeholder="address"
+          placeholder="Address"
           onChangeText={text => {
             this.setState({address: text});
           }}
         />
         <TextInput
           style={styles.textinput}
-          placeholder="postcode"
+          placeholder="Postcode"
           onChangeText={text => {
             this.setState({postcode: text});
           }}
@@ -125,7 +139,7 @@ class SignUpPage extends React.Component {
         />
         <TextInput
           style={styles.textinput}
-          placeholder="payPal email"
+          placeholder="payPal Email"
           onChangeText={text => {
             this.setState({payPal: text});
           }}
@@ -148,16 +162,6 @@ class SignUpPage extends React.Component {
         />
         <TouchableOpacity style={styles.button} onPress={this.onSignUp}>
           <Text style={styles.whiteText}>Sign up.</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={this.addBusiness}>
-          <Text style={styles.whiteText}>Add businesses</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text
-            style={styles.signUp}
-            onPress={() => this.props.navigation.navigate('Login')}>
-            Go back to login.
-          </Text>
         </TouchableOpacity>
       </View>
     );
