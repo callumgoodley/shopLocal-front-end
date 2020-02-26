@@ -10,7 +10,7 @@ const ShopCard = (props) => {
 			<TouchableOpacity
 				style={styled.card}
 				onPress={() => {
-					navigation.navigate('Business', { business: props });
+					navigation.navigate('Business Tabs', { business: props });
 				}}
 			>
 				<View style={styled.imageView}>
@@ -21,9 +21,9 @@ const ShopCard = (props) => {
 					<Text style={styled.cardTextType}>{business.type}</Text>
 				</View>
 				<Button
-					title="go to shop"
+					title="Go to page"
 					onPress={() => {
-						navigation.navigate('Business', { business: props });
+						navigation.navigate('Business Tabs', { business: props });
 					}}
 				/>
 			</TouchableOpacity>
@@ -49,13 +49,17 @@ const styled = {
 		padding: 2,
 		fontSize: 18,
 		color: '#149c0c'
-		// color: '#fff'
 	},
 	cardTextType: {
 		paddingLeft: 4,
 		fontSize: 15,
 		color: '#149c0c'
-		// color: '#fff'
+	},
+	cardLink: {
+		paddingLeft: 4,
+		fontSize: 15,
+		fontWeight: 'bold',
+		color: '#149c0c'
 	},
 	text: {
 		flex: 1,

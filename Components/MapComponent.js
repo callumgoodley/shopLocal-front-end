@@ -5,6 +5,8 @@ import { View, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import ShopCard from './ShopCard';
+import { useNavigation } from '@react-navigation/native';
+import { connect } from 'react-redux';
 
 Geolocation.setRNConfiguration({
 	skipPermissionRequests: true,
@@ -18,33 +20,10 @@ class MapComponent extends React.Component {
 		longitude: 1
 	};
 
-	componentDidMount() {
-		navigator.geolocation.getCurrentPosition(
-			(position) => {
-				this.setState({
-					latitude: position.coords.latitude,
-					longitude: position.coords.longitude
-				});
-			},
-			(err) => this.setState({ err: err.message })
-			// {enableHighAccuracy: true, timeout: 20000, maximumAge: 2000},
-		);
-	}
-
-	makeBusinessesArr = (data) => {
-		const arr = [];
-		const keys = Object.keys(data);
-		for (let i = 0; i < keys.length; i++) {
-			let key = keys[i];
-			arr.push(data[key]);
-			data[key].GoogleID = key;
-		}
-		return arr;
-	};
-
 	render() {
-		if (this.props.shops) {
-			const businessArr = this.makeBusinessesArr(this.props.shops.data);
+		if (this.props.businesses) {
+			const { navigation } = this.props.allProps;
+			const businessArr = this.makeBusinessesArr(this.props.businesses.data);
 
 			return (
 				<MapView
@@ -63,13 +42,20 @@ class MapComponent extends React.Component {
 						return (
 							<Marker
 								key={business.business_id}
+								style={styled.callout}
 								coordinate={{
 									latitude: business.lat,
 									longitude: business.lng
 								}}
 							>
-								<Callout>
-									<View style={styled.shopCardView}>
+								<Callout
+									style={styled.callout}
+									tooltip={true}
+									onPress={() => {
+										navigation.navigate('Business Tabs', { business: business });
+									}}
+								>
+									<View>
 										<ShopCard business={business} />
 									</View>
 								</Callout>
@@ -95,8 +81,52 @@ class MapComponent extends React.Component {
 			);
 		}
 	}
+
+	componentDidMount() {
+		navigator.geolocation.getCurrentPosition(
+			(position) => {
+				this.setState({
+					latitude: position.coords.latitude,
+					longitude: position.coords.longitude
+				});
+			},
+			(err) => this.setState({ err: err.message })
+			// {enableHighAccuracy: true, timeout: 20000, maximumAge: 2000},
+		);
+	}
+
+	makeBusinessesArr = (data) => {
+		const arr = [];
+		const keys = Object.keys(data);
+		for (let i = 0; i < keys.length; i++) {
+			let key = keys[i];
+			arr.push(data[key]);
+			data[key].GoogleID = key;
+		}
+		return arr;
+	};
 }
 
-const styled = { mapView: { flex: 1 }, shopCardView: { width: 250 } };
+const mapStateToProps = (state) => {
+	return {
+		user: state.reducer.loggedInUser,
+		businesses: state.reducer.businesses
+	};
+};
 
-export default MapComponent;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		add: (user) => dispatch(login(user)),
+		add: (businesses) => dispatch(loadBusinesses(businesses))
+	};
+};
+
+const styled = {
+	mapView: { flex: 1 },
+	shopCardView: { width: 250 },
+	callout: {
+		backgroundColor: 'transparent'
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapComponent);

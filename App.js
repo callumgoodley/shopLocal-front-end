@@ -8,6 +8,7 @@ import SettingsPage from './Screens/SettingsPage';
 import LoginPage from './Screens/LoginPage';
 import SignUpPage from './Screens/SignUpPage';
 import BusinessPage from './Screens/BusinessPage';
+import BusinessTabs from './Screens/BusinessTabs';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -28,6 +29,7 @@ function HomeStackScreen() {
 			<HomeStack.Screen name="Login" component={LoginPage} />
 			<HomeStack.Screen name="Signup" component={SignUpPage} />
 			<HomeStack.Screen name="Home" component={HomePage} />
+			<HomeStack.Screen name="Business Tabs" component={BusinessTabs} />
 			<HomeStack.Screen name="Business" component={BusinessPage} />
 		</HomeStack.Navigator>
 	);

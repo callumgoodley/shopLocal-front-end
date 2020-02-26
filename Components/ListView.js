@@ -16,12 +16,11 @@ class ListView extends React.Component {
 	};
 
 	render() {
-		// console.log('PROPS LIST >> ', this.props.businesses.data);
 		const businessArr = this.makeBusinessesArr(this.props.businesses.data);
 		return (
 			<ScrollView style={{ padding: 20 }}>
 				{businessArr.map((business) => {
-					return <ShopCard business={business} />;
+					return <ShopCard key={business.business_id} business={business} />;
 				})}
 			</ScrollView>
 		);

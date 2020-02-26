@@ -3,27 +3,43 @@ import { Text, View, Image } from 'react-native';
 
 class BusinessPage extends React.Component {
 	render() {
-		console.log('BP >>', this.props.route.params.business.business);
-		const business = this.props.route.params.business.business;
-		console.log(business.img);
-		return (
-			<View>
+		console.log('LISTVIEW PROPS >>>', this.props.business.business);
+		if (this.props.business.business) {
+			const { business } = this.props.business;
+			return (
 				<View style={styled.imageView}>
-					<Image source={{ uri: business.img }} />
+					<View style={styled.imageView}>
+						<Image source={{ uri: business.img }} style={styled.image} />
+					</View>
+					<View style={styled.imageView}>
+						<Text style={styled.name}>{business.business_name}</Text>
+						<Text style={styled.secondLine}>
+							{business.type} {business.address} {business.postcode}
+						</Text>
+
+						<Text style={styled.story}>{business.story}</Text>
+					</View>
 				</View>
-				<View>
-					<Image source={{ uri: business.img }} />
+			);
+		} else {
+			const { business } = this.props;
+			return (
+				<View style={styled.imageView}>
+					<View style={styled.imageView}>
+						<Image source={{ uri: business.img }} style={styled.image} />
+					</View>
+					<View style={styled.imageView}>
+						<Text style={styled.name}>{business.business_name}</Text>
 
-					<Text style={styled.name}>{business.business_name}</Text>
+						<Text style={styled.secondLine}>
+							{business.type} {business.address} {business.postcode}
+						</Text>
 
-					<Text style={styled.secondLine}>
-						{business.type} {business.address} {business.postcode}
-					</Text>
-
-					<Text style={styled.story}>{business.story}</Text>
+						<Text style={styled.story}>{business.story}</Text>
+					</View>
 				</View>
-			</View>
-		);
+			);
+		}
 	}
 }
 
@@ -40,13 +56,15 @@ const styled = {
 	story: {
 		padding: 5
 	},
-	imageView: { flex: 1 },
+	imageView: {
+		flex: 1
+	},
 	image: {
-		// flex: 1,
-		// width: null,
-		// resizeMode: 'cover',
-		// borderTopRightRadius: 17,
-		// borderTopLeftRadius: 17
+		flex: 1,
+		width: null,
+		resizeMode: 'cover',
+		borderTopRightRadius: 17,
+		borderTopLeftRadius: 17
 	}
 };
 

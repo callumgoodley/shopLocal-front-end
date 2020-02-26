@@ -103,7 +103,7 @@ class HomePage extends React.Component {
 				</View>
 				{!toggleView ? (
 					<View style={styled.shops}>
-						<MapComponent shops={this.props.businesses} />
+						<MapComponent allProps={this.props} />
 					</View>
 				) : (
 					<View style={styled.shops}>
