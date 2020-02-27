@@ -54,33 +54,24 @@ class LoginPage extends React.Component {
 		);
 	};
 
-	onLogin = () => {
-		const { typedEmail, typedPassword } = this.state;
-		firebase
-			.auth()
-			.signInWithEmailAndPassword(typedEmail, typedPassword)
-			.then((loggedInUser) => {
-				getUser(loggedInUser.user.uid).then((userData) => this.props.add(userData));
-			})
-			.then(() => {
-				this.props.navigation.navigate('Home');
-			})
-			.catch((err) => {
-				console.log('theres been an error' + err);
-			});
-	};
 
-	// componentDidMount() {
-	// 	this.unsubscriber = firebase.auth().onAuthStateChanged((changedUser) => {
-	// 		this.setState({ user: changedUser });
-	// 	});
-	// }
+  onLogin = () => {
+    const {typedEmail, typedPassword} = this.state;
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(typedEmail, typedPassword)
+      .then(loggedInUser => {
+        return getUser(loggedInUser.user.uid);
+      })
+      .then(userData => this.props.add(userData))
+      .then(() => {
+        this.props.navigation.navigate('Home');
+      })
+      .catch(err => {
+        console.log('theres been an error' + err);
+      });
+  };
 
-	// componentWillUnmount() {
-	// 	if (this.unsubscriber) {
-	// 		this.unsubscriber();
-	// 	}
-	// }
 
 	render() {
 		return (

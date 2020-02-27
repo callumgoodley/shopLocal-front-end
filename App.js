@@ -7,11 +7,27 @@ import MyAccountPage from './Screens/MyAccountPage';
 import SettingsPage from './Screens/SettingsPage';
 import LoginPage from './Screens/LoginPage';
 import SignUpPage from './Screens/SignUpPage';
+
 import BusinessPage from './Screens/BusinessPage';
 import BusinessTabs from './Screens/BusinessTabs';
+import OrderHistoryPage from './Screens/OrderHistoryPage';
+
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import BasketPage from './Screens/BasketPage';
+import Paypal from './Screens/Paypal';
+
+// const LoginStack = createStackNavigator();
+
+// function LoginStackScreen() {
+//   return (
+//     <LoginStack.Navigator>
+//       <LoginStack.Screen name="Login" component={LoginPage} />
+//       <LoginStack.Screen name="Signup" component={SignUpPage} />
+//     </LoginStack.Navigator>
+//   );
+// }
 
 const HomeStack = createStackNavigator();
 
@@ -38,21 +54,35 @@ function HomeStackScreen() {
 const SettingsStack = createStackNavigator();
 
 function SettingsStackScreen() {
-	return (
-		<SettingsStack.Navigator>
-			<SettingsStack.Screen name="Settings" component={SettingsPage} />
-		</SettingsStack.Navigator>
-	);
+
+  return (
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen name="Settings" component={Paypal} />
+      {/* <SettingsStack.Screen name="Paypal" component={Paypal} /> */}
+    </SettingsStack.Navigator>
+  );
+
 }
 
 const MyAccountStack = createStackNavigator();
 
 function MyAccountStackScreen() {
-	return (
-		<MyAccountStack.Navigator>
-			<MyAccountStack.Screen name="My Account" component={MyAccountPage} options={{ title: 'My Account' }} />
-		</MyAccountStack.Navigator>
-	);
+
+  return (
+    <MyAccountStack.Navigator>
+      <MyAccountStack.Screen
+        name="My Account"
+        component={MyAccountPage}
+        options={{title: 'My Account'}}
+      />
+      <MyAccountStack.Screen
+        name="Order History"
+        component={OrderHistoryPage}
+        // options={{title: 'My Account'}}
+      />
+    </MyAccountStack.Navigator>
+  );
+
 }
 
 const Tab = createBottomTabNavigator();
