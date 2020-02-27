@@ -145,9 +145,6 @@ class Paypal extends React.Component {
                 }}
               />
             </View>
-            <View style={{flex: 1}}>
-              <Text>hello</Text>
-            </View>
           </View>
 
           <Button onPress={this._paypalToggleModal} title="Back" />

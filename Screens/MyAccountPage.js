@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import {View, Text, TextInput, TouchableOpacity, Button} from 'react-native';
 import {logout} from '../actions/users';
 import {getUser, postUser, patchUser} from '../API';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Avatar} from 'react-native-elements';
 
 class MyAccountPage extends React.Component {
@@ -19,9 +18,9 @@ class MyAccountPage extends React.Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log('props account page', this.props);
     const {firstName, lastName, telephone, address, postcode} = this.state;
-    console.log(this.props.user);
+    // console.log(this.props.user);
     return (
       <View>
         <View style={styled.avatar}>
@@ -147,11 +146,10 @@ const styled = {
 };
 
 const mapStateToProps = state => {
-  // console.log(state);
+  console.log('map state', state.userReducer.loggedInUser);
   return {
     user: state.userReducer.loggedInUser,
   };
-
 };
 
 // const mapDispatchToProps = state => {};

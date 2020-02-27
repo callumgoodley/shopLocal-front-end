@@ -12,8 +12,6 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const ProductCard = props => {
-  // const img = 'https://baconmockup.com/640/360';
-  // const product = props.products[0];
   return (
     <Card>
       <CardItem>
@@ -34,9 +32,23 @@ const ProductCard = props => {
             <Text>£ {props.product.price}0</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Ionicons name="ios-add" size={20} />
-            <Text style={{fontSize: 15}}>1</Text>
-            <Ionicons name="ios-remove" size={20} />
+            <View>
+              <Ionicons
+                onPress={() => props.addItem(props.product)}
+                name="ios-add"
+                size={30}
+              />
+            </View>
+            <View style={{padding: 5}}>
+              <Text style={{fontSize: 20}}>1</Text>
+            </View>
+            <View>
+              <Ionicons
+                onPress={() => alert('alert-')}
+                name="ios-remove"
+                size={30}
+              />
+            </View>
           </View>
         </Right>
       </CardItem>
