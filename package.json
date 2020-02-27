@@ -13,7 +13,7 @@
     "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "^0.1.6",
     "@react-navigation/bottom-tabs": "^5.0.5",
-    "@react-navigation/native": "^5.0.5",
+    "@react-navigation/native": "^5.0.7",
     "@react-navigation/stack": "^5.0.5",
     "axios": "^0.19.2",
     "firebase": "^7.8.2",
@@ -24,11 +24,17 @@
     "react-native-fbsdk": "1.1.2",
     "react-native-gesture-handler": "^1.6.0",
     "react-native-maps": "https://github.com/react-community/react-native-maps.git",
+    "react-native-paypal-lib": "^1.0.9",
     "react-native-reanimated": "^1.7.0",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.0.0-beta.7",
     "react-native-vector-icons": "^6.6.0",
+
+    "react-paypal-button-v2": "^2.6.1",
+    "react-paypal-express-checkout": "^1.0.5",
+
     "react-native-webview": "^8.1.2",
+
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "request": "^2.88.2",

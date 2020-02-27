@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {connect} from 'react-redux';
 import {View, Text, TextInput, TouchableOpacity, Button} from 'react-native';
 import {logout} from '../actions/users';
@@ -150,6 +151,7 @@ const mapStateToProps = state => {
   return {
     user: state.userReducer.loggedInUser,
   };
+
 };
 
 // const mapDispatchToProps = state => {};
