@@ -27,11 +27,12 @@ class ListView extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.reducer.loggedInUser,
-    businesses: state.reducer.businesses,
-  };
+
+const mapStateToProps = (state) => {
+	return {
+		user: state.userReducer.loggedInUser,
+		businesses: state.reducer.businesses
+	};
 };
 
 const mapDispatchToProps = dispatch => {
