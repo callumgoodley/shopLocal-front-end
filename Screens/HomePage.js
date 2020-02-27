@@ -99,7 +99,7 @@ class HomePage extends React.Component {
 		return (
 			<View style={styled.homeView}>
 				<View style={styled.categories}>
-					<CategoriesList setCategory={this.setCategory} />
+					<CategoriesList setCategory={this.setCategory} loadBusinesses={this.loadBusinesses} />
 				</View>
 				{!toggleView ? (
 					<View style={styled.shops}>
@@ -133,11 +133,8 @@ class HomePage extends React.Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.filterCategory !== this.state.filterCategory) {
-			// axios get where topic
-			return this.setState((currentState) => {
-				return {
-					locations: currentState.locations.filter((shop) => shop.type === this.state.filterCategory)
-				};
+			this.loadBusinesses(this.state.filterCategory).then((businesses) => {
+				this.props.add(businesses);
 			});
 		}
 	}
@@ -148,8 +145,8 @@ class HomePage extends React.Component {
 		});
 	}
 
-	loadBusinesses = () => {
-		return getBusinesses();
+	loadBusinesses = (type) => {
+		return getBusinesses(type);
 	};
 
 	setCategory = (type) => {
@@ -184,6 +181,7 @@ const styled = {
 	shops: {
 		flex: 4
 	},
+
 	categories: { flex: 1, backgroundColor: 'rgba(20, 156, 12, 0.1)' },
 	homeView: {
 		flex: 1,

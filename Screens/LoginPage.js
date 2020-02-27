@@ -29,9 +29,13 @@ class LoginPage extends React.Component {
 							);
 							firebase.auth().signInWithCredential(credential).then(
 								(loggedInUser) => {
+									console.log('userData >>>', loggedInUser);
+									getUser(loggedInUser.user.uid).then(
+										(userData) => userData && this.props.add(userData)
+									);
 									postUser(loggedInUser.user.uid, loggedInUser.user.email);
 									this.props.navigation.navigate('Home');
-									console.log('Log in success: ' + loggedInUser.user.email);
+									console.log('Log in success: ', loggedInUser.user.email);
 								},
 								(error) => {
 									console.log(error);
@@ -56,10 +60,7 @@ class LoginPage extends React.Component {
 			.auth()
 			.signInWithEmailAndPassword(typedEmail, typedPassword)
 			.then((loggedInUser) => {
-				console.log('login page', loggedInUser.user.uid);
 				getUser(loggedInUser.user.uid).then((userData) => this.props.add(userData));
-
-				// console.log('Login successproviderData: ' + this.state.user.user.email);
 			})
 			.then(() => {
 				this.props.navigation.navigate('Home');

@@ -6,7 +6,6 @@ import BusinessPage from './BusinessPage';
 
 export default class BusinessTabs extends Component {
 	render() {
-		console.log('IN TABS >> ', this.props.route.params.business);
 		const { business } = this.props.route.params;
 		return (
 			<Container>

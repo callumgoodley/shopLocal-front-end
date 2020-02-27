@@ -3,7 +3,6 @@ import { Text, View, Image, ScrollView } from 'react-native';
 
 class BusinessPage extends React.Component {
 	render() {
-		console.log('LISTVIEW PROPS >>>', this.props.business.business);
 		if (this.props.business.business) {
 			const { business } = this.props.business;
 			return (
