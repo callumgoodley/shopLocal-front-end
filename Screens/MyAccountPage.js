@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 import { connect } from 'react-redux';
 import { View, Text, TextInput, TouchableOpacity, Button } from 'react-native';
 import { logout } from '../actions/users';
@@ -17,6 +18,7 @@ class MyAccountPage extends React.Component {
 		address: '',
 		postcode: ''
 	};
+
 
 	render() {
 		// console.log(this.state);
@@ -132,6 +134,7 @@ const styled = {
 		alignItems: 'center'
 	}
 };
+
 
 const mapStateToProps = (state) => {
 	console.log('IN MAP STATE 2 PROPS ', state);
