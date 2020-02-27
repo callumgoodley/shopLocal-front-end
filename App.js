@@ -11,6 +11,8 @@ import OrderHistoryPage from './Screens/OrderHistoryPage';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import BasketPage from './Screens/BasketPage';
+import Paypal from './Screens/Paypal';
 
 // const LoginStack = createStackNavigator();
 
@@ -47,7 +49,8 @@ const SettingsStack = createStackNavigator();
 function SettingsStackScreen() {
   return (
     <SettingsStack.Navigator>
-      <SettingsStack.Screen name="Settings" component={SettingsPage} />
+      <SettingsStack.Screen name="Settings" component={Paypal} />
+      {/* <SettingsStack.Screen name="Paypal" component={Paypal} /> */}
     </SettingsStack.Navigator>
   );
 }
