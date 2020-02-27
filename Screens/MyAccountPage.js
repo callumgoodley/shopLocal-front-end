@@ -29,6 +29,7 @@ class MyAccountPage extends React.Component {
             rounded
             title={firstName.charAt(0) + lastName.charAt(0)}
             showEditButton
+            onPress={() => console.log('change pic')}
           />
         </View>
         <View style={styled.inputBox}>
