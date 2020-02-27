@@ -6,7 +6,6 @@ export const getUsers = () => {
 	});
 };
 
-
 export const getUser = (uid) => {
 	return axios
 		.get(`https://shoplocal-f199e.firebaseio.com/users.json`)
@@ -32,31 +31,23 @@ export const getBusinesses = (type) => {
 			return filteredBusinesses;
 		})
 		.catch((err) => 'error occurred: ' + err);
-
 };
 
-export const patchUser = ({
-  key,
-  firstName,
-  lastName,
-  telephone,
-  address,
-  postcode,
-}) => {
-  return axios
-    .patch(`https://shoplocal-f199e.firebaseio.com/users/${key}.json`, {
-      firstName: firstName,
-      lastName: lastName,
-      telephone: telephone,
-      address: address,
-      postcode: postcode,
-    })
-    .then(res => {
-      console.log('success');
-    })
-    .catch(err => {
-      console.log('in api' + err + err.body);
-    });
+export const patchUser = ({ key, firstName, lastName, telephone, address, postcode }) => {
+	return axios
+		.patch(`https://shoplocal-f199e.firebaseio.com/users/${key}.json`, {
+			firstName: firstName,
+			lastName: lastName,
+			telephone: telephone,
+			address: address,
+			postcode: postcode
+		})
+		.then((res) => {
+			console.log('success');
+		})
+		.catch((err) => {
+			console.log('in api' + err + err.body);
+		});
 };
 
 export const postBusiness = () => {
@@ -84,7 +75,6 @@ export const postBusiness = () => {
 		});
 };
 
-
 export const filterBusinesses = (type, businesses) => {
 	const businessesData = businesses.data;
 	if (type) {
@@ -97,35 +87,27 @@ export const filterBusinesses = (type, businesses) => {
 	} else {
 		return businesses;
 	}
+};
 
-export const postUser = (
-  uid,
-  typedEmail,
-  firstName,
-  lastName,
-  tel,
-  address,
-  postcode,
-  payPal,
-) => {
-  return axios
-    .post('https://shoplocal-f199e.firebaseio.com/users.json', {
-      UID: uid,
-      firstName: firstName,
-      lastName: lastName,
-      telephone: tel,
-      address: address,
-      postcode: postcode,
-      email: typedEmail,
-      paypal_email: payPal,
-      order_history: [],
-    })
-    .then(res => {
-      console.log('success' + res);
-    })
-    .catch(err => {
-      console.log('in api' + err + err.body);
-    });
+export const postUser = (uid, typedEmail, firstName, lastName, tel, address, postcode, payPal) => {
+	return axios
+		.post('https://shoplocal-f199e.firebaseio.com/users.json', {
+			UID: uid,
+			firstName: firstName,
+			lastName: lastName,
+			telephone: tel,
+			address: address,
+			postcode: postcode,
+			email: typedEmail,
+			paypal_email: payPal,
+			order_history: []
+		})
+		.then((res) => {
+			console.log('success' + res);
+		})
+		.catch((err) => {
+			console.log('in api' + err + err.body);
+		});
 };
 
 // export const postUserImg = (key, img) => {

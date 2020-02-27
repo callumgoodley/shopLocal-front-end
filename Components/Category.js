@@ -32,7 +32,7 @@ class Category extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		user: state.reducer.loggedInUser,
+		user: state.userReducer.loggedInUser,
 		businesses: state.reducer.businesses
 	};
 };

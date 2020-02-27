@@ -37,8 +37,6 @@ const styled = {
 	card: {
 		flex: 1,
 		backgroundColor: '#fff',
-		// backgroundColor: '#149c0c',
-		// backgroundColor: 'rgba(20, 156, 12, 0.3)',
 		borderRadius: 20,
 		borderColor: '#149c0c',
 		borderWidth: 3,
