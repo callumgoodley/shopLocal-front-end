@@ -54,24 +54,26 @@ class LoginPage extends React.Component {
 		);
 	};
 
-
-  onLogin = () => {
-    const {typedEmail, typedPassword} = this.state;
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(typedEmail, typedPassword)
-      .then(loggedInUser => {
-        return getUser(loggedInUser.user.uid);
-      })
-      .then(userData => this.props.add(userData))
-      .then(() => {
-        this.props.navigation.navigate('Home');
-      })
-      .catch(err => {
-        console.log('theres been an error' + err);
-      });
-  };
-
+	onLogin = () => {
+		const { typedEmail, typedPassword } = this.state;
+		firebase
+			.auth()
+			.signInWithEmailAndPassword(typedEmail, typedPassword)
+			.then((loggedInUser) => {
+				console.log('loggedInUSER >>>', loggedInUser);
+				return getUser(loggedInUser.user.uid);
+			})
+			.then((userData) => {
+				console.log('USER DATA >> ', userData);
+				this.props.add(userData);
+			})
+			.then(() => {
+				this.props.navigation.navigate('Home');
+			})
+			.catch((err) => {
+				console.log('theres been an error' + err);
+			});
+	};
 
 	render() {
 		return (
@@ -167,15 +169,13 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
 	return {
-		user: state.reducer.loggedInUser
-		// businesses: state.reducer.businesses
+		user: state.userReducer.loggedInUser
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		add: (user) => dispatch(login(user))
-		// add: (businesses) => dispatch(loadBusinesses(businesses))
 	};
 };
 
