@@ -20,6 +20,7 @@ class ListView extends React.Component {
     return (
       <ScrollView style={{padding: 20}}>
         {businessArr.map(business => {
+          console.log(business);
           return <ShopCard key={business.business_id} business={business} />;
         })}
       </ScrollView>
@@ -27,12 +28,11 @@ class ListView extends React.Component {
   }
 }
 
-
-const mapStateToProps = (state) => {
-	return {
-		user: state.userReducer.loggedInUser,
-		businesses: state.reducer.businesses
-	};
+const mapStateToProps = state => {
+  return {
+    user: state.userReducer.loggedInUser,
+    businesses: state.reducer.businesses,
+  };
 };
 
 const mapDispatchToProps = dispatch => {

@@ -18,17 +18,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import BasketPage from './Screens/BasketPage';
 import Paypal from './Screens/Paypal';
 
-// const LoginStack = createStackNavigator();
-
-// function LoginStackScreen() {
-//   return (
-//     <LoginStack.Navigator>
-//       <LoginStack.Screen name="Login" component={LoginPage} />
-//       <LoginStack.Screen name="Signup" component={SignUpPage} />
-//     </LoginStack.Navigator>
-//   );
-// }
-
 const HomeStack = createStackNavigator();
 
 function HomeStackScreen() {
@@ -47,7 +36,7 @@ function HomeStackScreen() {
       <HomeStack.Screen name="Business Tabs" component={BusinessTabs} />
       <HomeStack.Screen name="Business" component={BusinessPage} />
       <HomeStack.Screen name="Basket" component={BasketPage} />
-      <HomeStack.Screen name="Paypal" component={Paypal} />
+      {/* <HomeStack.Screen name="Paypal" component={Paypal} /> */}
     </HomeStack.Navigator>
   );
 }
@@ -91,7 +80,7 @@ const App = () => {
           tabBarIcon: ({color}) => {
             let iconName;
 
-            if (route.name === 'Home Tab') {
+            if (route.name === 'Home') {
               iconName = 'ios-home';
             } else if (route.name === 'Settings') {
               iconName = 'ios-cog';
@@ -106,8 +95,15 @@ const App = () => {
           activeTintColor: '#149C0C',
           inactiveTintColor: 'gray',
           style: {paddingTop: 5},
+          initialRouteName: 'Login',
         }}>
-        <Tab.Screen name="Home Tab" component={HomeStackScreen} />
+        {/* <Tab.Screen
+          name="Login"
+          component={LoginPage}
+          options={{tabBarVisible: false, title: ''}}
+        /> */}
+
+        <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="My Account" component={MyAccountStackScreen} />
         <Tab.Screen name="Settings" component={SettingsStackScreen} />
       </Tab.Navigator>
