@@ -25,7 +25,7 @@ class BusinessPage extends React.Component {
       );
     } else {
       const {business} = this.props;
-      console.log(business.productsArr);
+      // console.log(business.productsArr);
       return (
         <View style={styled.imageView}>
           <View style={styled.imageView}>

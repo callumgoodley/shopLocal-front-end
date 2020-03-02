@@ -29,26 +29,46 @@ const ProductCard = props => {
         </Left>
         <Right>
           <View>
-            <Text>£ {props.product.price}0</Text>
+            <Text>£ {props.product.price}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <View>
-              <Ionicons
-                onPress={() => props.addItem(props.product)}
-                name="ios-add"
-                size={30}
-              />
-            </View>
-            <View style={{padding: 5}}>
+            {props.addItem ? (
+              <View>
+                <Ionicons
+                  onPress={() => props.addItem(props.product)}
+                  name="ios-add"
+                  size={30}
+                />
+              </View>
+            ) : (
+              <View>
+                <Ionicons
+                  onPress={() => props.removeItem(props.product)}
+                  name="ios-trash"
+                  size={30}
+                />
+              </View>
+            )}
+            {/* {props.removeItem && (
+              <View>
+                <Ionicons
+                  onPress={() => props.removeItem(props.product)}
+                  name="remove-circle-outline"
+                  size={30}
+                />
+              </View>
+            )} */}
+
+            {/* <View style={{padding: 5}}>
               <Text style={{fontSize: 20}}>1</Text>
-            </View>
-            <View>
+            </View> */}
+            {/* <View>
               <Ionicons
                 onPress={() => alert('alert-')}
                 name="ios-remove"
                 size={30}
               />
-            </View>
+            </View> */}
           </View>
         </Right>
       </CardItem>

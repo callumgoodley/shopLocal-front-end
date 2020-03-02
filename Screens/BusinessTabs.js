@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Text, ScrollView, Button} from 'react-native';
-import {Container, Header, Content, Tab, Tabs} from 'native-base';
+import {ScrollView, Button} from 'react-native';
+import {Container, Header, Tab, Tabs} from 'native-base';
 import BusinessPage from './BusinessPage';
 import ProductCard from '../Components/ProductCard';
-// import BasketPage from './BasketPage';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default class BusinessTabs extends Component {
   state = {
@@ -11,28 +12,43 @@ export default class BusinessTabs extends Component {
   };
 
   addItem = item => {
+    alert('added to cart');
     this.setState(currentState => {
       return {products: [...currentState.products, item]};
     });
   };
 
+  removeItem = item => {
+    this.setState(currentState => {
+      return {
+        products: currentState.products.filter(product => {
+          return product !== item;
+        }),
+      };
+    });
+  };
+
+  componentDidMount() {
+    this.props.navigation.setOptions({
+      title: this.props.route.params.business.business_name,
+    });
+  }
   render() {
     console.log(this.state.products);
     const {business} = this.props.route.params;
-    // const business1 = this.props;
-    // console.log(business.business.productsArr);
 
     return (
       <Container>
         <Header>
-          <Button
-            title="Basket"
+          <TouchableOpacity
             onPress={() =>
               this.props.navigation.navigate('Basket', {
                 products: this.state.products,
+                removeItem: this.removeItem,
               })
-            }
-          />
+            }>
+            <Ionicons name="ios-basket" size={40} color={'#149C0C'} />
+          </TouchableOpacity>
         </Header>
         <Tabs>
           <Tab heading="Info">
@@ -40,7 +56,7 @@ export default class BusinessTabs extends Component {
           </Tab>
           <Tab heading="Shop">
             <ScrollView>
-              {business.business.productsArr.map(product => {
+              {business.productsArr.map(product => {
                 return (
                   <ProductCard
                     product={product}
